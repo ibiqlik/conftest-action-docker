@@ -1,5 +1,7 @@
 FROM alpine/helm:2.16.0
 
+ENV HELM_HOME /root/.helm
+
 RUN apk update \
     && apk add bash git curl wget \
     && rm -rf /var/cache/apk/*
@@ -13,4 +15,5 @@ RUN curl -L https://github.com/instrumenta/conftest/releases/download/v0.15.0/co
     rm -rf /tmp/*
 
 COPY entrypoint.sh /entrypoint.sh
+
 ENTRYPOINT [ "/entrypoint.sh" ]
