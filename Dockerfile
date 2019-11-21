@@ -1,10 +1,9 @@
 FROM alpine/helm:2.16.0
 
-ENV HELM_HOME /root/.helm
+RUN apk add --no-cache jq coreutils ca-certificates
+# git curl wget
 
-RUN apk update \
-    && apk add bash git curl wget \
-    && rm -rf /var/cache/apk/*
+ENV HELM_HOME /root/.helm
 
 RUN helm init --client-only
 

@@ -4,7 +4,7 @@ author: 'ibiqlik'
 
 inputs:
   path:
-    description: "Path to resources that will be tested"
+    description: "Path to resources/chart that will be tested"
     required: true
   policy:
     description: "Path to policy folder. Defaults to policy"
@@ -15,9 +15,11 @@ inputs:
   output:
     description: "Output format"
     default: "stdout"
+  pull_image:
+    description: "Registry to pull policies from. E.g. myregistry.azurecr.io/myopapolicies:sha"
   helm:
     description: 'Bool: true|false, if testing helm charts'
-    default: "true"
+    default: "false"
 
 runs:
   using: 'docker'
