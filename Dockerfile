@@ -1,6 +1,6 @@
 FROM alpine/helm:2.16.0
 
-RUN apk add --no-cache jq coreutils ca-certificates
+RUN apk add --no-cache git jq coreutils ca-certificates
 # git curl wget
 
 ENV HELM_HOME /root/.helm
