@@ -22,6 +22,7 @@ if [ ! -z "$INPUT_PULL_IMAGE" ]; then
         printf "$JSON_FMT" "$REGISTRY" "$(echo "$REGISTRY_USER:$REGISTRY_PWD" | base64 -w 0)" > $AUTH_FILE
     fi
 
+    echo "Pulling policy from $INPUT_PULL_IMAGE"
     conftest pull $INPUT_PULL_IMAGE -p $INPUT_POLICY
 fi
 
