@@ -1,7 +1,5 @@
 #!/bin/sh -l
 
-export
-
 echo "====================="
 echo "= Running OPA Tests ="
 echo "====================="
