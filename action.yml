@@ -23,4 +23,11 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker://ilirbekteshi/conftest-action-docker'
+  args:
+    - ${{ inputs.path }}
+    - ${{ inputs.policy }}
+    - ${{ inputs.namespace }}
+    - ${{ inputs.output }}
+    - ${{ inputs.pull_image }}
+    - ${{ inputs.helm }}
