@@ -1,4 +1,4 @@
-FROM alpine/helm:2.16.0
+FROM alpine/helm:2.16.1
 
 RUN apk add --no-cache git curl bash jq coreutils ca-certificates
 
