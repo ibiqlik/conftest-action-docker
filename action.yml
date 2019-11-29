@@ -17,9 +17,8 @@ inputs:
     default: "stdout"
   pull_image:
     description: "Registry to pull policies from. E.g. myregistry.azurecr.io/myopapolicies:sha"
-  helm:
-    description: 'Bool: true|false, if testing helm charts'
-    default: "false"
+  type:
+    description: 'Supported: helm. Will run additional tool, like helm plugin. By default there will be no processing of the input.'
 
 runs:
   using: 'docker'
@@ -30,4 +29,4 @@ runs:
     - ${{ inputs.namespace }}
     - ${{ inputs.output }}
     - ${{ inputs.pull_image }}
-    - ${{ inputs.helm }}
+    - ${{ inputs.type }}

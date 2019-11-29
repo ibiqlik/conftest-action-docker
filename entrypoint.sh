@@ -24,8 +24,13 @@ if [ ! -z "$INPUT_PULL_IMAGE" ]; then
     conftest pull $INPUT_PULL_IMAGE -p $INPUT_POLICY
 fi
 
-if [ "$INPUT_HELM" == "true" ]; then
-    helm conftest -p $INPUT_POLICY -o $INPUT_OUTPUT --namespace $INPUT_NAMESPACE $INPUT_PATH
-else
-    conftest test -p $INPUT_POLICY -o $INPUT_OUTPUT --namespace $INPUT_NAMESPACE $INPUT_PATH
-fi
+TYPE=$(echo ${INPUT_TYPE} | tr '[:upper:]' '[:lower:]')
+
+case $TYPE in
+    helm)
+        helm conftest -p $INPUT_POLICY -o $INPUT_OUTPUT --namespace $INPUT_NAMESPACE $INPUT_PATH
+    ;;
+
+    *)
+        conftest test -p $INPUT_POLICY -o $INPUT_OUTPUT --namespace $INPUT_NAMESPACE $INPUT_PATH
+esac
