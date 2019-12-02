@@ -60,3 +60,25 @@ jobs:
         namespace: "kubernetes.labels"
         policy: "policy"
 ```
+
+### Run test with local policy on default path (`policy/`) against Terraform configurations
+
+```
+name: Test
+on: [push]
+jobs:
+  awsterraform:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Terraform plan
+      run: |
+        cd path/to/public_s3.tf
+        terraform init
+        terraform plan -out public_s3.tfplan
+        terraform show -json public_s3.tfplan > public_s3.json
+    - name: OPA tests
+      uses: ibiqlik/conftest-action-docker@master
+      with:
+        path: "path/to/public_s3.json"
+```
