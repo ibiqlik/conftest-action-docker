@@ -43,6 +43,34 @@ jobs:
         REGISTRY_PWD: ${{ secrets.REGISTRY_PWD }}
 ```
 
+Test helm chart that has dependencies and need fetching before Conftest is ran
+
+```
+name: Test
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Fetch dependencies
+      run: |
+        helm init --client-only
+        helm repo add MyPrivateRepoName https://myregistry.azure.io/helm --username ${{ secrets.REGISTRY_USER }} --password ${{ secrets.REGISTRY_USER }}
+        helm repo add bitnami https://charts.bitnami.com/bitnami
+        helm dependency build mychart
+
+    - name: Run OPA tests
+      uses: ibiqlik/conftest-action-docker@master
+      with:
+        path: "mychart"
+        pull_image: "myregistry.azurecr.io/myopapolicies:0.0.1"
+        type: "helm"
+      env:
+        REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
+        REGISTRY_PWD: ${{ secrets.REGISTRY_PWD }}
+```
+
 ### Run test with local policy against Kubernetes resource files
 
 ```
