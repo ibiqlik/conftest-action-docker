@@ -22,7 +22,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ilirbekteshi/conftest-action-docker'
+  image: 'docker://ilirbekteshi/conftest-action-docker:2df55bf32633eb51cea335f3890d83e47681f4d6'
   args:
     - ${{ inputs.path }}
     - ${{ inputs.policy }}
