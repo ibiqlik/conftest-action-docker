@@ -1,5 +1,5 @@
 name: 'Conftest OPA test runner'
-description: 'Run OPA (rego) tests'
+description: 'Validate Kubernetes, Helm, Terraform, etc. configurations against OPA (rego) policies'
 author: 'ibiqlik'
 
 inputs:
@@ -30,3 +30,7 @@ runs:
     - ${{ inputs.output }}
     - ${{ inputs.pull_image }}
     - ${{ inputs.type }}
+
+branding:
+  color: orange
+  icon: lock
